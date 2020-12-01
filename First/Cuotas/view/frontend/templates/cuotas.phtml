@@ -1,0 +1,87 @@
+<?php
+/** @var $this \First\Cuotas\Block\Catalog\Product\View\Cuotas  */
+/** @var $priceProduct  float */
+?>
+
+<?php
+$priceProduct = $this->getProductPriceToFinance();
+$cuotas = $this->getCuotas();
+?>
+<?php if ($cuotas) : ?>
+<div id="cuotas-product">
+    <h3 class="h3-cuotas"><?= /** @escapeNotVerified */  $this->displayTitle() ?></h3>
+    <fieldset class="fieldset review-fieldset">
+        <div class="field required">
+            <div class="control">
+                <label for="select-cuota">Número de cuotas</label>
+                <select name="cuota" id="select-cuota">
+                    <option>Seleccione su cuota</option>
+                </select>
+            </div>
+        </div>
+        <div id="simular-cuotas-prices">
+            <span class="span_rojo">Valor Cuota: <span id="valor_cuota"> </span></span>&nbsp;&nbsp; | &nbsp;&nbsp;Costo Total: <span id="valor_final"> </span>
+        </div>
+    </fieldset>
+</div>
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'Magento_Catalog/js/price-utils'
+        ],
+        function(
+            $,
+            priceUtils
+        ) {
+            let cuotas   = <?= $this->getCuotas() ?>;
+            let priceProduct  = <?= $priceProduct ?>;
+            let simularCuotas = $('#simular-cuotas-prices');
+            let selectField = $('#select-cuota');
+            let valorCuota = $('#valor_cuota');
+            let valorFinal = $('#valor_final');
+            simularCuotas.css("display", "none");
+
+            // Agrego la cantidad de Cutoas al Select
+            $.each(cuotas, function (i, item) {
+                selectField.append($('<option>', {
+                    text : item.cuota
+                }));
+            });
+
+            /* Muestra el nuevo precio para la cuota y el precio Final en base a la cuota seleccionada */
+            selectField.change(function ()
+            {
+                let cuota  = $(this).val();
+                let titleSelect = 'Seleccione su cuota';
+
+                if(cuota === titleSelect || !cuota){
+                    simularCuotas.css("display", "none");
+                    // console.log('Desde Select default ' + cuota);
+                } else {
+                    simularCuotas.css("display", "block");
+                    simulate(priceProduct, cuota);
+                    // console.log('Desde Diferente ' + cuota);
+                }
+            });
+
+            /* Calcula el nuevo precio para la cuota y el precio Final */
+            function simulate (priceValue, cuotaValue){
+                let freshCuota;
+                let freshFinal;
+                $.each(cuotas, function (i, item) {
+                    if(cuotaValue === item.cuota){
+                        freshFinal = priceValue*item.interes;
+                        freshCuota = freshFinal/cuotaValue;
+                        valorCuota.html(priceUtils.formatPrice(freshCuota));
+                        valorFinal.html(priceUtils.formatPrice(freshFinal));
+                        // console.log('Costo total:' +freshFinal);
+                        // console.log('Valor Cuota:' +freshCuota);
+                    }
+                });
+            }
+        }
+    );
+</script>
+<?php endif; ?>
+

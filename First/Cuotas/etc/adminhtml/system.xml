@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="First" sortOrder="120" translate="label">
+            <label>Manager Cuotas</label>
+        </tab>
+        <section id="cuotas" translate="label" sortOrder="100" showInWebsite="1" showInStore="1" showInDefault="1">
+            <label>Cuotas</label>
+            <tab>First</tab>
+            <resource>First_Cuotas::parent</resource>
+            <group id="cuota" showInDefault="1" showInStore="1" showInWebsite="1">
+                <comment><![CDATA[<div class="cuota-logo"></div><div class="cuota-text">Ofrece distintos precios en Cuotas. <br/>Antes de habilitar el modúlo es necesario cargar las cuotas a mostrar. <br/>Podes cargar las cuotas una a una desde <b>MANAGER CUOTAS.</b> <br/>También podes importar todo un csv con las cuotas desde <b>System > Import > Entity Type(Cuotas Cuota Import).</b></div>]]></comment>
+                <fieldset_css>complex cuotas-section</fieldset_css>
+                <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
+                <label>Cuotas Options</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Cuotas</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Muestra las cuotas en la página de productos]]></comment>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Titulo Cuotas</label>
+                    <comment><![CDATA[Título para el dropdown que muestra las cuotas en la página de productos]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

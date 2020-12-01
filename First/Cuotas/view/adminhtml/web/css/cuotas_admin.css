@@ -1,0 +1,25 @@
+.admin__menu .level-0.item-cuotas > a:before {
+    /* content: '\e631'; */
+    content: url('../images/calculator.svg');
+    height: 28px;
+    margin: 0 auto;
+    width: 28px;
+    background: #f7f3eb;
+    padding-top: 2px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+}
+.cuotas-section .cuota-logo {
+    background: url('../images/calculator.svg')  no-repeat center / 9rem;
+    background-color: #f7f3eb;
+    height: 100px;
+    width: auto;
+    padding-left: 20rem;
+    display:inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    border-radius: 8px;
+}
+.cuotas-section .button-container {float: right;}
+.cuotas-section .cuota-text { display: inline-block; vertical-align: middle; width: 50%}
+

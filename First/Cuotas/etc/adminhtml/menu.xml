@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="First_Cuotas::cuotas" title="Manager Cuotas" translate="title" module="First_Cuotas" sortOrder="200" resource="First_Cuotas::parent"/>
+        <add id="First_Cuotas::cuota" title="Cuota" translate="title" module="First_Cuotas" sortOrder="200" parent="First_Cuotas::cuotas" action="cuotas/cuota/index" resource="First_Cuotas::cuota"/>
+    </menu>
+</config>

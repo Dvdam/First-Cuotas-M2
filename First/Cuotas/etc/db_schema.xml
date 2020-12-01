@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cuotas_cuota" resource="default" engine="innodb" comment="CUOTAS Cuota Table">
+        <column xsi:type="smallint" name="cuota_id" padding="6" unsigned="false" nullable="false" identity="true"
+                comment="CUOTA ID"/>
+        <column xsi:type="int" name="cuota" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="CUOTA"/>
+        <column xsi:type="decimal" name="interes" scale="6" precision="20" unsigned="false" nullable="false"
+                comment="INTERES"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="cuota_id"/>
+        </constraint>
+        <index referenceId="CUOTAS_CUOTA_CUOTA" indexType="btree">
+            <column name="cuota"/>
+        </index>
+    </table>
+</schema>
